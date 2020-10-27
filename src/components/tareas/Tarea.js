@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Tarea = () => {
+const Tarea = ({tarea}) => {
     return (  
-        <h1>Tarea</h1>
+        <li>
+            <p>{tarea.nombre}</p>
+        </li>
     );
 }
  
