@@ -16,7 +16,11 @@ const ListadoProyectos = () => {
     }, []);
 
     //revisamos si proyectos tiene contenido
-    if(proyectos.length === 0) return null;
+    if(proyectos.length === 0) {
+        return (
+            <p>No hay proyectos, crea uno para comenzar.</p>
+        )
+    }
 
     return (  
         <ul className="listado-proyectos">
