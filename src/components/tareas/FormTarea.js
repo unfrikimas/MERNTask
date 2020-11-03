@@ -13,10 +13,26 @@ const FormTarea = () => {
     //Array destructuring para extraer el proyecto actual
     const [proyectoActual] = proyecto;    
 
+    //Cuando haga clic en agregar tarea
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        //Validar
+
+        //Pasar la alidacion
+
+        //Agregar la nueva tarea al state de tareas
+
+        //Reiniciar el form
+
+    }
+
     return (  
         
         <div className="formulario">
-            <form>
+            <form
+                onSubmit={onSubmit}
+            >
                 <div className="contenedor-input">
                     <input 
                         type="text"
