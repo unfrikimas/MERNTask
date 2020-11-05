@@ -7,7 +7,7 @@ import {
     ELIMINAR_PROYECTO
 } from '../../types';
 
-export default (state, action) => {
+const proyectoReducer = (state, action) => {
     switch(action.type) {
 
         case FORMULARIO_PROYECTO:
@@ -50,3 +50,5 @@ export default (state, action) => {
             return state;
     }
 }
+
+export default proyectoReducer;
