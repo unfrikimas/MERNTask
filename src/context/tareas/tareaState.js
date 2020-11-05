@@ -5,25 +5,26 @@ import TareaReducer from './tareaReducer';
 import { 
     TAREAS_PROYECTO,
     AGREGAR_TAREA,
-    VALIDAR_TAREA
+    VALIDAR_TAREA,
+    ELIMINAR_TAREA
 } from '../../types';
 
 const TareaState = (props) => {
     const initialState = {
         tareas: [
-            {nombre: 'Elegir plataforma', estado: true, proyectoId: 1},
-            {nombre: 'Elegir colores', estado: false, proyectoId: 2},
-            {nombre: 'Elegir pasarelas de pago', estado: true, proyectoId: 3},
-            {nombre: 'Elegir hosting', estado: false, proyectoId: 4},
-            {nombre: 'Elegir colores', estado: false, proyectoId: 4},
-            {nombre: 'Elegir pasarelas de pago', estado: true, proyectoId: 1},
-            {nombre: 'Elegir hosting', estado: false, proyectoId: 3},
-            {nombre: 'Elegir colores', estado: false, proyectoId: 2},
-            {nombre: 'Elegir pasarelas de pago', estado: true, proyectoId: 3},
-            {nombre: 'Elegir hosting', estado: false, proyectoId: 2},
-            {nombre: 'Elegir colores', estado: false, proyectoId: 1},
-            {nombre: 'Elegir pasarelas de pago', estado: true, proyectoId: 3},
-            {nombre: 'Elegir hosting', estado: false, proyectoId: 4}
+            {id: 13, nombre: 'Elegir plataforma', estado: true, proyectoId: 1},
+            {id: 1, nombre: 'Elegir colores', estado: false, proyectoId: 2},
+            {id: 2, nombre: 'Elegir pasarelas de pago', estado: true, proyectoId: 3},
+            {id: 3, nombre: 'Elegir hosting', estado: false, proyectoId: 4},
+            {id: 4, nombre: 'Elegir colores', estado: false, proyectoId: 4},
+            {id: 5, nombre: 'Elegir pasarelas de pago', estado: true, proyectoId: 1},
+            {id: 6, nombre: 'Elegir hosting', estado: false, proyectoId: 3},
+            {id: 7, nombre: 'Elegir colores', estado: false, proyectoId: 2},
+            {id: 8, nombre: 'Elegir pasarelas de pago', estado: true, proyectoId: 3},
+            {id: 9, nombre: 'Elegir hosting', estado: false, proyectoId: 2},
+            {id: 10, nombre: 'Elegir colores', estado: false, proyectoId: 1},
+            {id: 11, nombre: 'Elegir pasarelas de pago', estado: true, proyectoId: 3},
+            {id: 12, nombre: 'Elegir hosting', estado: false, proyectoId: 4}
         ],
         tareasproyecto: null,
         errortarea: false
@@ -56,6 +57,14 @@ const TareaState = (props) => {
         })
     }
 
+    //Eliminar tarea por id
+    const eliminarTarea = (id) => {
+        dispatch({
+            type: ELIMINAR_TAREA,
+            payload: id
+        })
+    }
+
     return (
         <TareaContex.Provider
             value={{
@@ -64,7 +73,8 @@ const TareaState = (props) => {
                 errortarea: state.errortarea,
                 obtenerTareas,
                 agregarTarea,
-                validarTarea
+                validarTarea,
+                eliminarTarea
             }}
         >
             {props.children}
