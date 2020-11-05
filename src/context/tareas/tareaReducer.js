@@ -16,8 +16,8 @@ export default (state, action) => {
             return {
                 ...state,
                 tareas: [
-                    ...state.tareas,
-                    action.payload
+                    action.payload,
+                    ...state.tareas
                 ],
                 errortarea: false
             }
