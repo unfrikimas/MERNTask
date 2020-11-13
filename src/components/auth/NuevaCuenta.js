@@ -49,7 +49,7 @@ const NuevaCuenta = () => {
         //validar que los dos passwords sean iguales
         if(password !== confirmar) {
             mostrarAlerta('Los passwords no son iguales', 'alerta-error');
-            return
+            return;
         }
 
         //Pasar los valores al action
