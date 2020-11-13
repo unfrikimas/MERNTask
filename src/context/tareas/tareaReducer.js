@@ -5,7 +5,8 @@ import {
     ELIMINAR_TAREA,
     ESTADO_TAREA,
     TAREA_ACTUAL,
-    ACTUALIZAR_TAREA
+    ACTUALIZAR_TAREA,
+    LIMPIAR_TAREA
 } from '../../types';
 
 const tareaReducer = (state, action) => {
@@ -13,7 +14,8 @@ const tareaReducer = (state, action) => {
         case TAREAS_PROYECTO:
             return {
                 ...state,
-                tareasproyecto: state.tareas.filter(tarea => tarea.proyectoId === action.payload)
+                tareasproyecto: state.tareas.filter(tarea => tarea.proyectoId === action.payload),
+                tareaseleccionada: null
             }
         case AGREGAR_TAREA:
             return {
@@ -32,7 +34,8 @@ const tareaReducer = (state, action) => {
         case ELIMINAR_TAREA:
             return {
                 ...state,
-                tareas: state.tareas.filter(tarea => tarea.id !== action.payload)
+                tareas: state.tareas.filter(tarea => tarea.id !== action.payload),
+                tareaseleccionada: null
             }
         case ACTUALIZAR_TAREA:
         case ESTADO_TAREA:
@@ -44,6 +47,11 @@ const tareaReducer = (state, action) => {
             return {
                 ...state,
                 tareaseleccionada: action.payload
+            }
+        case LIMPIAR_TAREA:
+            return {
+                ...state,
+                tareaseleccionada: null
             }
         default:
             return state;
