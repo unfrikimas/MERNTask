@@ -3,7 +3,7 @@ import authContext from './authContext';
 import authReducer from './authReducer';
 
 import clienteAxios from '../../config/axios';
-
+import tokenAuth from '../../config/token';
 
 import {  
     REGISTRO_EXITOSO,
@@ -61,24 +61,45 @@ const AuthState = (props) => {
     }
 
     //Obtiene el usuario autenticado
-    const usuarioAutenticado = async () => {
-        
-        const token = localStorage.getItem('token');
+    const usuarioAutenticado = async () => {      
 
+        const token = localStorage.getItem('token');
         if(token) {
-            //TODO: Funcion para enviar el tokens por headers
+            tokenAuth(token);
         }
 
         try {
-
             const respuesta = await clienteAxios.get('/api/auth');
-            
-        } catch (error) {
-            
+            // console.log(respuesta);
+            dispatch({
+                type: OBTENER_USUARIO,
+                payload: respuesta.data.usuario
+            });
+        } catch (error) {    
+            console.log(error.response);        
             dispatch({
                 type: LOGIN_ERROR
             })
+        }
 
+    }
+
+    // Cuando el uuario inicia sesion
+    const iniciarSesion = async datos => {
+
+        try {
+            const respuesta = await clienteAxios.post('/api/auth', datos);
+            console.log(respuesta);
+        } catch (error) {
+            console.log(error.response.data.msg);
+            const alerta = {
+                msg: error.response.data.msg,
+                categoria: 'alerta-error'
+            }
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alerta
+            })        
         }
 
     }
@@ -91,7 +112,8 @@ const AuthState = (props) => {
                 autenticado: state.autenticado,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
-                registrarUsuario
+                registrarUsuario,
+                iniciarSesion
             }}
         >
             {props.children}
