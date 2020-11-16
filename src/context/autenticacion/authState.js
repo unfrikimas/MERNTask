@@ -84,7 +84,7 @@ const AuthState = (props) => {
 
     }
 
-    // Cuando el uuario inicia sesion
+    // Cuando el usuario inicia sesion
     const iniciarSesion = async datos => {
         try {
             const respuesta = await clienteAxios.post('/api/auth', datos);
@@ -107,6 +107,13 @@ const AuthState = (props) => {
         }
     }
 
+    //Cierra la sesion del usuario
+    const cerrarSesion = () => {
+        dispatch({
+            type: CERRAR_SESION
+        })
+    }
+
     return (
 
         <authContext.Provider
@@ -117,7 +124,8 @@ const AuthState = (props) => {
                 mensaje: state.mensaje,
                 registrarUsuario,
                 iniciarSesion,
-                usuarioAutenticado
+                usuarioAutenticado,
+                cerrarSesion
             }}
         >
             {props.children}
