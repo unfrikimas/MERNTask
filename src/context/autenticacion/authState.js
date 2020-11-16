@@ -21,7 +21,8 @@ const AuthState = (props) => {
         token: localStorage.getItem('token'),
         autenticado: null,
         usuario: null,
-        mensaje: null
+        mensaje: null,
+        cargando: true
     }
 
     // array distructuring
@@ -122,6 +123,7 @@ const AuthState = (props) => {
                 autenticado: state.autenticado,
                 usuario: state.usuario,
                 mensaje: state.mensaje,
+                cargando: state.cargando,
                 registrarUsuario,
                 iniciarSesion,
                 usuarioAutenticado,
