@@ -16,7 +16,7 @@ const Barra = () => {
             { usuario ? <p className="nombre-usuario">Hola <span>{usuario.nombre}</span></p> : null }
             <nav className="nav-principal">
                 <button
-                    className="btn btn-blank cerrar-sesion"
+                    className="btn btn-blank2"
                     onClick={ () => cerrarSesion() }
                 >Cerrar sesión</button>
             </nav>

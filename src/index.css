@@ -86,6 +86,13 @@ a {
   padding: 0;
   display: block;
   background-color: transparent;
+}
+
+.btn-blank2 {
+  margin: 0;
+  padding: 0;
+  display: block;
+  background-color: transparent;
   color: var(--blanco);
 }
 

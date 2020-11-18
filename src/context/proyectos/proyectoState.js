@@ -16,13 +16,13 @@ import {
 
 const ProyectoState = (props) => {
 
-    const proyectos = [
-        { id: 1, nombre: 'Tienda virtual' },
-        { id: 2, nombre: 'Intranet' },
-        { id: 3, nombre: 'Diseno de sitio web' },
-        { id: 4, nombre: 'MERN' },
-        { id: 5, nombre: 'Imagenes'}
-    ]
+    // const proyectos = [
+    //     { id: 1, nombre: 'Tienda virtual' },
+    //     { id: 2, nombre: 'Intranet' },
+    //     { id: 3, nombre: 'Diseno de sitio web' },
+    //     { id: 4, nombre: 'MERN' },
+    //     { id: 5, nombre: 'Imagenes'}
+    // ]
    
     const initialState = {
         proyectos: [],
@@ -43,11 +43,16 @@ const ProyectoState = (props) => {
     }
 
     //obtener los proyectos
-    const obtenerProyectos = () => {
-        dispatch({
-            type: OBTENER_PROYECTOS,
-            payload: proyectos
-        })
+    const obtenerProyectos = async () => {
+        try {
+            const resultado = await clienteAxios.get('/api/proyectos');
+            dispatch({
+                type: OBTENER_PROYECTOS,
+                payload: resultado.data.proyectos
+            })            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     //Agregar nuevo proyecto
