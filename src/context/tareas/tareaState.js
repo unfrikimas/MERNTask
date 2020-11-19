@@ -24,13 +24,20 @@ const TareaState = (props) => {
     //Crear dispatch y state
     const [state, dispatch] = useReducer(TareaReducer, initialState);
 
-    //Crear funciones
+    //Funciones
     //Obtener las tareas de un proyecto
-    const obtenerTareas = (proyectoId) => {
-        dispatch({
-            type: TAREAS_PROYECTO,
-            payload: proyectoId
-        })
+    const obtenerTareas = async (proyecto) => {
+        try {
+            const resultado = await clienteAxios.get('/api/tareas', { params: { proyecto } })
+            // console.log(resultado.data.tareas);
+            dispatch({
+                type: TAREAS_PROYECTO,
+                payload: resultado.data.tareas
+            })
+        } catch (error) {
+            console.log(error)
+            
+        }
     }
 
     //Agregar una tarea al proyecto seleccionado
