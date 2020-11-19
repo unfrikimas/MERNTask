@@ -74,12 +74,17 @@ const TareaState = (props) => {
         }
     }
 
-    //Cambia el estado de cada tarea
-    const cambiarEstadoTarea = (tarea) => {
-        dispatch({
-            type: ESTADO_TAREA,
-            payload: tarea
-        })
+    //Actualiza la tarea
+    const actualizarTarea = async (tarea) => {
+        try {
+            const resultado = await clienteAxios.put(`/api/tareas/${tarea._id}`, tarea)
+            dispatch({
+                type: ACTUALIZAR_TAREA,
+                payload: resultado.data.tarea
+            })            
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //Obtiene una tarea para edicion
@@ -90,13 +95,13 @@ const TareaState = (props) => {
         })
     }
 
-    //Actualiza la tarea
-    const actualizarTarea = (tarea) => {
-        dispatch({
-            type: ACTUALIZAR_TAREA,
-            payload: tarea
-        })
-    }
+    // //Actualiza la tarea
+    // const actualizarTarea = (tarea) => {
+    //     dispatch({
+    //         type: ACTUALIZAR_TAREA,
+    //         payload: tarea
+    //     })
+    // }
 
     //Limpia la tarea seleccionada despues de editarla
     const limpiarTarea = () => {
@@ -115,7 +120,6 @@ const TareaState = (props) => {
                 agregarTarea,
                 validarTarea,
                 eliminarTarea,
-                cambiarEstadoTarea,
                 guardarTareaActual,
                 actualizarTarea,
                 limpiarTarea
