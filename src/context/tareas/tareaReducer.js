@@ -34,7 +34,7 @@ const tareaReducer = (state, action) => {
         case ELIMINAR_TAREA:
             return {
                 ...state,
-                tareasproyecto: state.tareasproyecto.filter(tarea => tarea.id !== action.payload),
+                tareasproyecto: state.tareasproyecto.filter(tarea => tarea._id !== action.payload),
                 tareaseleccionada: null
             }
         case ACTUALIZAR_TAREA:
